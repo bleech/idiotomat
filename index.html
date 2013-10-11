@@ -1,0 +1,150 @@
+<html>
+  <head>
+    <title>idiotom.at</title>
+    <link href='http://fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <style>
+      html,
+      body {
+        font-family: 'Julius Sans One', sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: rgb(0,34,84);
+        background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMDIyNTQiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDAxMzU4IiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L3JhZGlhbEdyYWRpZW50PgogIDxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+        background: -moz-radial-gradient(center, ellipse cover,  rgba(0,34,84,1) 0%, rgba(0,19,88,1) 100%);
+        background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,34,84,1)), color-stop(100%,rgba(0,19,88,1)));
+        background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,34,84,1) 0%,rgba(0,19,88,1) 100%);
+        background: -o-radial-gradient(center, ellipse cover,  rgba(0,34,84,1) 0%,rgba(0,19,88,1) 100%);
+        background: -ms-radial-gradient(center, ellipse cover,  rgba(0,34,84,1) 0%,rgba(0,19,88,1) 100%);
+        background: radial-gradient(ellipse at center,  rgba(0,34,84,1) 0%,rgba(0,19,88,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#002254', endColorstr='#001358',GradientType=1 );
+        position: relative;
+      }
+
+      h1 {
+        color: #e2e2e2;
+        font-size: 100px;
+        padding: 100px 0 50px 0;
+        text-align: center;
+        width: 100%;
+      }
+
+      a {
+        color: white;
+      }
+
+      button {
+        background: #e2e2e2;
+        border-bottom: 3px solid rgba(0,0,0,0.4) inset;
+        border-radius: 4px;
+        border: none;
+        box-shadow: none;
+        color: rgb(0,34,84);
+        display: block;
+        font-size: 40px;
+        margin: 40px auto;
+        padding: 20px 40px;
+        position: relative;
+      }
+
+      button:hover {
+        cursor:pointer;
+      }
+
+      .alert {
+        color: #e2e2e2;
+        display: none;
+        font-size: 24px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      .advice {
+        color: #e2e2e2;
+        font-size: 24px;
+        margin-bottom: 100px;
+        margin-top: -100px;
+        text-align: center;
+      }
+
+      ul {
+        list-style: none;
+        margin: -50px auto 0 auto;
+        padding: 0;
+        width: 600px;
+      }
+
+      li {
+        color: #e2e2e2;
+        font-size: 24px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      .bleech {
+        bottom: 10px;
+        position: fixed;
+        right: 10px;
+      }
+    </style>
+
+    <h1>idiotom.at</h1>
+
+    <div class="advice">Bekannt aus <a href="http://www.prosieben.de/tv/circus-halligalli/videos/unnoetig-kompliziertes-interview-atze-schroeder-clip" target="_blank">Circus HalliGalli</a></div>
+
+    <div class="alert">This Website is not supported in your browser. Please use Chrome or Safari instead.</div>
+
+    <ul class="instructions">
+      <li>Connect your headphones.</li>
+      <li>Click the button.</li>
+      <li>Accept the access to your microphone.</li>
+      <li>Talk to somebody and try to listen to your own voice.</li>
+    </ul>
+
+    <button onclick="startAudio()" type="button">Get dumb.</button>
+
+    <div class="bleech">
+      <a href="http://bleech.de" target="_blank"><img src="img/bleech-logo.png" /></a>
+    </div>
+
+    <script>
+
+      function hasAudioContext() {
+        // Note: Opera builds are unprefixed.
+        return !!(window.audioContext || window.webkitAudioContext ||
+                  window.mozAudioContext || window.msAudioContext);
+      }
+
+      if (hasAudioContext()) {
+        var context = new webkitAudioContext();
+        var mediaStreamSource;
+
+        var delay = context.createDelay();
+        var delayGain = context.createGain();
+
+        delay.delayTime.value = 0.2;
+        delay.connect(delayGain);
+
+        delayGain.connect(context.destination);
+
+        function startAudio () {
+          navigator.webkitGetUserMedia({audio:true},function(stream) {
+            mediaStreamSource = context.createMediaStreamSource(stream);
+            mediaStreamSource.connect(delay);
+          });
+
+          navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+          window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
+        }
+      } else {
+        document.querySelector('.alert').style.display = 'block';
+        document.querySelector('.instructions').style.display = 'none';
+      }
+
+    </script>
+  </body>
+</html>
