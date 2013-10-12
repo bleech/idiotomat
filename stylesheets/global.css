@@ -36,6 +36,10 @@ section {
   margin-top: 18px;
 }
 
+.bleech img {
+  border: none;
+}
+
 .teaser {
   background-size: 100%;
   background: url("../img/teaser-bg.jpg") 50% 0% no-repeat;
@@ -43,6 +47,10 @@ section {
   color: white;
   font-size: 24px;
   -webkit-animation: backgroundMovement 60s alternate linear infinite;
+}
+
+.instructions {
+  display: none;
 }
 
 ul {
@@ -78,7 +86,6 @@ a:hover{
 .alert {
   padding-top: 180px;
   text-align: center;
-  display: none;
 }
 
 .wrapper {
