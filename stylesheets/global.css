@@ -63,7 +63,7 @@ li button {
 
 a {
   text-decoration: none;
-  color: #ED5153;
+  color: #FF3242;
 
   -webkit-transition: all 0.2s ease-in-out;
      -moz-transition: all 0.2s ease-in-out;
@@ -97,10 +97,10 @@ h1 {
 }
 
 button {
-  background: #ED5153;
+  background: #FF3242;
   border-radius: 6px;
   border: none;
-  border-bottom: 3px solid #eb3a3c;
+  border-bottom: 3px solid #F60E2D;
   color: #eaeaea;
   cursor: pointer;
   display: block;
@@ -119,7 +119,7 @@ button {
 }
 
 button:hover {
-  background: #E14042;
+  background: #f32434;
 }
 
 .socials {
