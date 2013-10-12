@@ -6,6 +6,7 @@ html, body {
 
 body {
   background: #eaeaea;
+  min-width: 960px;
   position: relative;
   text-transform: lowercase;
   -webkit-font-smoothing: antialiased;
@@ -16,14 +17,10 @@ body {
 .flx {overflow: hidden;}
 .clr {clear: both;}
 
-section {
-  width: 100%;
-}
 
 .toolbar {
   background: #191919;
   height: 65px;
-  width: 100%;
 }
 
 .logo {
@@ -96,9 +93,9 @@ a:hover{
 
 h1 {
   color: #191919;
+  display: block;
   font-size: 36px;
   text-align: center;
-  width: 100%;
   padding-bottom: 30px;
   border-bottom: 1px solid #D3D3D3;
 }
