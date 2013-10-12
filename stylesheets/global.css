@@ -7,6 +7,7 @@ html, body {
 body {
   background: #eaeaea;
   position: relative;
+  text-transform: lowercase;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -20,42 +21,44 @@ section {
 }
 
 .toolbar {
-  background: #171717;
+  background: #191919;
   height: 65px;
   width: 100%;
 }
 
 .logo {
-  height: 124px;
-  width: 170px;
   position: absolute;
   top: 0;
   left: 0;
-  background: url("../img/logo.png") top left no-repeat;
 }
 
 .bleech {
-  margin-top: 15px;
+  margin-top: 18px;
 }
 
 .teaser {
   background-size: 100%;
-  background: url("../img/teaser-bg.jpg") top left no-repeat;
+  background: url("../img/teaser-bg.jpg") 50% 0% no-repeat;
   height: 398px;
   color: white;
   font-size: 24px;
+  -webkit-animation: backgroundMovement 60s alternate linear infinite;
 }
 
 ul {
   list-style: none;
   margin: 0;
-  padding: 130px 0;
-  vertical-align: middle;
+  padding: 90px 0 0 0;
 }
 
 li {
-  margin-bottom: 10px;
+  display: block;
+  margin: 10px 0;
   text-align: center;
+}
+
+li button {
+  margin: 25px auto;
 }
 
 a {
@@ -69,12 +72,11 @@ a {
 }
 
 a:hover{
-  color: #171717;
+  color: #191919;
 }
 
 .alert {
   padding-top: 180px;
-  position: absolute;
   text-align: center;
   display: none;
 }
@@ -86,7 +88,7 @@ a:hover{
 }
 
 h1 {
-  color: #171717;
+  color: #191919;
   font-size: 36px;
   text-align: center;
   width: 100%;
@@ -98,14 +100,17 @@ button {
   background: #ED5153;
   border-radius: 6px;
   border: none;
-  border-bottom: 3px solid #E14042;
+  border-bottom: 3px solid #eb3a3c;
   color: #eaeaea;
+  cursor: pointer;
   display: block;
   font-family: 'Julius Sans One', sans-serif;
   font-size: 30px;
   margin: 40px auto;
+  outline: none;
   padding: 20px 45px;
   position: relative;
+  text-transform: lowercase;
 
   -webkit-transition: all 0.2s ease-in-out;
      -moz-transition: all 0.2s ease-in-out;
@@ -115,4 +120,22 @@ button {
 
 button:hover {
   background: #E14042;
+}
+
+.wrapper .fb-like {
+  display: block;
+  margin: 0 auto;
+  width: 75px;
+}
+
+@-webkit-keyframes backgroundMovement {
+  0% { background-position: 42% 0%; }
+  12.5% { background-position: 44% 25%; }
+  25% { background-position: 46% 50%; }
+  37.5% { background-position: 48% 75%; }
+  50% { background-position: 50% 100%; }
+  62.5% { background-position: 52% 100%; }
+  75% { background-position: 54% 75%; }
+  87.5% { background-position: 56% 50%; }
+  100% { background-position: 58% 25%; }
 }
