@@ -122,10 +122,12 @@ button:hover {
   background: #E14042;
 }
 
+.socials {
+  text-align: center;
+}
+
 .wrapper .fb-like {
-  display: block;
-  margin: 0 auto;
-  width: 75px;
+  margin-left: 38px;
 }
 
 @-webkit-keyframes backgroundMovement {
