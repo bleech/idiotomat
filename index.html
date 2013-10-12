@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/global.css">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="description" content="Kopfhörer anschließen, starten, sprechen!">
+    <meta property="og:image" content="img/logo.png"/>
   </head>
   <body>
     <section class="toolbar">
@@ -47,7 +48,7 @@
       var startButton = document.querySelector('.start');
       var isRunning = false;
 
-      if (window.webkitAudioContext) {
+      if (window.webkitAudioContext && navigator.webkitGetUserMedia) {
         var context = new webkitAudioContext();
         var mediaStreamSource;
 
