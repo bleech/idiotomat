@@ -26,7 +26,7 @@
 
     <section class="teaser">
       <div class="wrapper">
-        <div class="alert">Dein Browser wird noch nicht unterstützt. Bitte verwende <a href="http://google.com/chrome">Chrome</a>, denn andere Browser unterstützen diese Technik noch nicht.</div>
+        <div class="alert">Dein Browser wird noch nicht unterstützt. Bitte verwende <a href="http://google.com/chrome" target="_blank" title="Google Chrome">Chrome</a>, <a href="http://www.opera.com/de/computer/" target="_blank" title="Opera">Opera</a> oder <a href="https://www.mozilla.org/de/firefox/new/" target="_blank" title="Mozilla Firefox">Firefox</a>, denn andere Browser unterstützen diese Technik noch nicht.</div>
         <ul class="instructions">
           <li>Kopfhörer anschließen</li>
           <li><button class="start" onclick="toggleAudio()" type="button">Starten</button></li>
@@ -52,10 +52,15 @@
 
     <script>
 
-      if (window.webkitAudioContext && navigator.webkitGetUserMedia) {
+      navigator.getUserMedia =  navigator.getUserMedia ||
+                                navigator.webkitGetUserMedia ||
+                                navigator.mozGetUserMedia;
+
+      var AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (window.AudioContext && navigator.getUserMedia) {
         var startButton = document.querySelector('.start');
         var isRunning = false;
-        var context = new webkitAudioContext();
+        var context = new AudioContext();
         var mediaStreamSource;
 
         document.querySelector('.alert').style.display = 'none';
@@ -76,15 +81,20 @@
             isRunning = false;
           } else {
             isRunning = true;
-            navigator.webkitGetUserMedia({audio:true},function(stream) {
-              mediaStreamSource = context.createMediaStreamSource(stream);
-              mediaStreamSource.connect(delay);
-              startButton.innerHTML = 'Stoppen';
-            });
+            navigator.getUserMedia(
+              { audio: true },
+              function(stream) {
+                mediaStreamSource = context.createMediaStreamSource(stream);
+                mediaStreamSource.connect(delay);
+                startButton.innerHTML = 'Stoppen';
+              },
+              function(err) {
+                console.log('Error occured: '+err.name);
+              }
+            );
           }
         }
       }
-
     </script>
 
     <div id="fb-root"></div>
