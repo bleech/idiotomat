@@ -37,6 +37,10 @@ body {
   border: none;
 }
 
+.info {
+  display: none;
+}
+
 .teaser {
   background-size: 100%;
   background: url("../img/teaser-bg.jpg") 50% 0% no-repeat;
