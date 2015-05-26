@@ -52,10 +52,15 @@
 
     <script>
 
-      if (window.webkitAudioContext && navigator.webkitGetUserMedia) {
+      navigator.getUserMedia =  navigator.getUserMedia ||
+                                navigator.webkitGetUserMedia ||
+                                navigator.mozGetUserMedia;
+
+      var AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (window.AudioContext && navigator.getUserMedia) {
         var startButton = document.querySelector('.start');
         var isRunning = false;
-        var context = new webkitAudioContext();
+        var context = new AudioContext();
         var mediaStreamSource;
 
         document.querySelector('.alert').style.display = 'none';
@@ -76,15 +81,20 @@
             isRunning = false;
           } else {
             isRunning = true;
-            navigator.webkitGetUserMedia({audio:true},function(stream) {
-              mediaStreamSource = context.createMediaStreamSource(stream);
-              mediaStreamSource.connect(delay);
-              startButton.innerHTML = 'Stoppen';
-            });
+            navigator.getUserMedia(
+              { audio: true },
+              function(stream) {
+                mediaStreamSource = context.createMediaStreamSource(stream);
+                mediaStreamSource.connect(delay);
+                startButton.innerHTML = 'Stoppen';
+              },
+              function(err) {
+                console.log('Error occured: '+err.name);
+              }
+            );
           }
         }
       }
-
     </script>
 
     <div id="fb-root"></div>
