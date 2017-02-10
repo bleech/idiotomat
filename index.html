@@ -61,22 +61,17 @@
         var startButton = document.querySelector('.start');
         var isRunning = false;
         var context = new AudioContext();
-        var mediaStreamSource;
+        var source;
 
         document.querySelector('.alert').style.display = 'none';
         document.querySelector('.instructions').style.display = 'block';
 
         var delay = context.createDelay();
-        var delayGain = context.createGain();
-
         delay.delayTime.value = 0.2;
-        delay.connect(delayGain);
-
-        delayGain.connect(context.destination);
 
         function toggleAudio () {
           if (isRunning) {
-            mediaStreamSource.disconnect();
+            source.disconnect();
             startButton.innerHTML = 'Starten';
             isRunning = false;
           } else {
@@ -84,8 +79,9 @@
             navigator.getUserMedia(
               { audio: true },
               function(stream) {
-                mediaStreamSource = context.createMediaStreamSource(stream);
-                mediaStreamSource.connect(delay);
+                source = context.createMediaStreamSource(stream);
+                source.connect(delay);
+                delay.connect(context.destination);
                 startButton.innerHTML = 'Stoppen';
               },
               function(err) {
